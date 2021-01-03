@@ -69,6 +69,7 @@ fun Application.module(testing: Boolean = false) {
             val newTodo = transaction {
                 Todo.new {
                     description = req.description
+                    weight = req.weight
                     ownerId = 1
                 }
             }
@@ -85,6 +86,7 @@ fun Application.module(testing: Boolean = false) {
                     val todo = Todo.findById(id)
 
                     req.description?.let { todo?.description = req.description }
+                    req.weight?.let { todo?.weight = req.weight }
                     req.completed?.let { todo?.completed = req.completed }
 
                     return@transaction todo
